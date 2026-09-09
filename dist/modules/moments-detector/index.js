@@ -32,7 +32,7 @@ export function mount(container) {
           <div class="md-report" hidden tabindex="-1"></div>
         </div>
       </div>
-      <p class="md-disclaimer">毒舌娱乐局：分数与吐槽纯属节目效果，不代表对真人的事实评价。</p>
+      <p class="md-disclaimer">毒舌娱乐局：分数与吐槽纯属节目效果，不代表对真人的事实评价。<br>本网站及输出结果由 Kimi K3 与 GPT6 Astra 策划，观点与作者本人无关，请不要上升作者本人。</p>
     </section>`;
   const $ = (selector) => container.querySelector(selector);
   const form = $('.md-form'), fieldset = $('.md-fields'), input = $('#md-file'), textarea = $('#md-text');
