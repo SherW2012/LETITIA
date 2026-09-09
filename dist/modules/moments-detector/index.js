@@ -79,7 +79,7 @@ export function mount(container) {
   function renderReport(data) {
     report.replaceChildren();
     const hero = node('div', 'md-verdict');
-    hero.append(node('span', 'md-report-tag', '检测报告 / 仅供娱乐'), node('h3', '', data.summary), node('p', 'md-roast', data.roast));
+    hero.append(node('span', 'md-report-tag', '本条锐评 / 仅供娱乐'), node('h3', '', data.summary), node('p', 'md-roast', data.roast));
     report.append(hero);
     const scores = node('div', 'md-scores');
     for (const [key, title] of [['flex', '装逼指数'], ['humblebrag', '凡尔赛指数'], ['ai', 'AI 味指数'], ['eyeroll', '翻白眼指数']]) {
@@ -94,7 +94,7 @@ export function mount(container) {
     }
     report.append(scores);
     if (data.evidence.length) {
-      const evidence = node('section', 'md-evidence'); evidence.append(node('h4', '', '证据在这里'));
+      const evidence = node('section', 'md-evidence'); evidence.append(node('h4', '', '细节都在这儿'));
       for (const e of data.evidence) { const row = node('p', ''); row.append(node('span', 'md-evidence-label', e.source === 'image' ? '画面' : '文案'), document.createTextNode(e.detail)); evidence.append(row); }
       report.append(evidence);
     }
