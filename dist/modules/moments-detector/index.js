@@ -22,17 +22,17 @@ export function mount(container) {
             <textarea id="md-text" rows="5" maxlength="5000" placeholder="比如：好烦，又被升职了，以后陪家人的时间更少了……"></textarea>
             <p class="md-input-note">截图、文案任选其一，也可以一起提交。</p>
           </fieldset>
-          <button class="md-submit" type="submit">开始检测 <span aria-hidden="true">↗</span></button>
+          <button class="md-submit" type="submit">开始锐评 <span aria-hidden="true">↗</span></button>
           <p class="md-status" role="status" aria-live="polite"></p>
           <p class="md-error" role="alert" hidden></p>
           <p class="md-privacy">点击检测后，内容将发送给 Kimi 分析。本站不保存上传内容。</p>
         </form>
         <div class="md-output" aria-label="检测报告">
-          <div class="md-empty"><span class="md-report-tag">待出报告</span><h3>今天的朋友圈，<br>浓度有多高？</h3><div class="md-empty-metrics"><span>装逼指数</span><span>凡尔赛指数</span><span>AI 味指数</span><span>翻白眼指数</span></div><p>每项都说清楚：<br>哪句话，哪个画面，为什么。</p></div>
+          <div class="md-empty"><span class="md-report-tag">待出报告</span><h3>今天的朋友圈，<br>浓度有多高？</h3><div class="md-empty-metrics"><span>装逼指数</span><span>凡尔赛指数</span><span>AI 味指数</span><span>翻白眼指数</span></div><p>图一放，直接开涮。<br>分数纯属节目效果。</p></div>
           <div class="md-report" hidden tabindex="-1"></div>
         </div>
       </div>
-      <p class="md-disclaimer">仅供娱乐，评的是这条内容的表达。AI 味不代表 AI 生成；翻白眼指数不是真实概率。</p>
+      <p class="md-disclaimer">毒舌娱乐局：分数与吐槽纯属节目效果，不代表对真人的事实评价。</p>
     </section>`;
   const $ = (selector) => container.querySelector(selector);
   const form = $('.md-form'), fieldset = $('.md-fields'), input = $('#md-file'), textarea = $('#md-text');
@@ -79,7 +79,7 @@ export function mount(container) {
   function renderReport(data) {
     report.replaceChildren();
     const hero = node('div', 'md-verdict');
-    hero.append(node('span', 'md-report-tag', '本条锐评 / 仅供娱乐'), node('h3', '', data.summary), node('p', 'md-roast', data.roast));
+    hero.append(node('span', 'md-report-tag', '毒舌开麦 / 节目效果'), node('h3', '', data.summary), node('p', 'md-roast', data.roast));
     report.append(hero);
     const scores = node('div', 'md-scores');
     for (const [key, title] of [['flex', '装逼指数'], ['humblebrag', '凡尔赛指数'], ['ai', 'AI 味指数'], ['eyeroll', '翻白眼指数']]) {
@@ -94,7 +94,7 @@ export function mount(container) {
     }
     report.append(scores);
     if (data.evidence.length) {
-      const evidence = node('section', 'md-evidence'); evidence.append(node('h4', '', '细节都在这儿'));
+      const evidence = node('section', 'md-evidence'); evidence.append(node('h4', '', '槽点都在这儿'));
       for (const e of data.evidence) { const row = node('p', ''); row.append(node('span', 'md-evidence-label', e.source === 'image' ? '画面' : '文案'), document.createTextNode(e.detail)); evidence.append(row); }
       report.append(evidence);
     }
