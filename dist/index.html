@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4ef24" />
+    <meta name="description" content="LETITIA 无用发明实验室。用 Vibe Coding，把离谱需求做成真的能跑的小玩意。" />
+    <title>LETITIA — 无用发明实验室</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#inventions">跳到发明展位</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="LETITIA 首页"><span class="brand-mark" aria-hidden="true">✳</span>LETITIA<span class="brand-period">.</span></a>
+        <span class="header-caption">独立制造 · 持续开工</span>
+        <a class="header-link" href="#inventions">发明展位 <span aria-hidden="true">↘</span></a>
+      </header>
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div class="intro-copy">
+            <p class="eyebrow">THE USELESS INVENTION LAB <span>/ 001</span></p>
+            <h1 id="page-title">无用发明<span class="title-last">实验室<span class="title-star" aria-hidden="true">✳</span></span></h1>
+            <p class="intro-description">用 Vibe Coding，把离谱需求做成真的能跑的小玩意。</p>
+          </div>
+          <aside class="lab-note" aria-label="实验室准则">
+            <span class="note-label">本实验室坚持</span>
+            <p>可以没什么用。<br />但必须真能跑。</p>
+            <span class="note-footer">ABSURD IDEAS. REAL BUILDS.</span>
+          </aside>
+        </section>
+        <section class="collection" id="inventions" aria-labelledby="collection-title">
+          <div class="collection-heading">
+            <div class="collection-title"><h2 id="collection-title">发明展位</h2><span class="collection-count" id="module-count">00 件已上线</span></div>
+            <span class="collection-note">离谱程度不限</span>
+          </div>
+          <div class="module-grid" id="module-grid"></div>
+          <noscript><p class="noscript-notice">当前还没有上线的发明。启用 JavaScript 后可查看模块展位。</p></noscript>
+          <div class="collection-bottom"><span>展位持续增加中</span><span aria-hidden="true">···</span><span>下一件，还没想好。</span></div>
+        </section>
+      </main>
+      <footer class="site-footer"><span>LETITIA <span class="footer-separator">/</span> 无用发明实验室</span><span>离谱需求 → AI 开发 → 真跑起来</span></footer>
+    </div>
+    <dialog id="module-dialog" class="module-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-heading"><h2 id="dialog-title"></h2><button id="close-dialog" class="close-dialog" type="button" aria-label="关闭小功能">关闭 <span aria-hidden="true">×</span></button></div>
+      <div id="module-content" class="module-content"></div>
+    </dialog>
+  </body>
+</html>
