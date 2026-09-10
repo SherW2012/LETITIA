@@ -114,14 +114,36 @@ export async function analyze(request, env, fetcher = fetch) {
   }
 }
 
+// Fixed public model assets only: never forward user URLs, cookies or camera frames.
+const VISION_ASSETS = {
+  '/vendor/mediapipe/vision_bundle.mjs': ['https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/vision_bundle.mjs', 'text/javascript'],
+  '/vendor/mediapipe/wasm/vision_wasm_internal.js': ['https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm/vision_wasm_internal.js', 'text/javascript'],
+  '/vendor/mediapipe/wasm/vision_wasm_internal.wasm': ['https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm/vision_wasm_internal.wasm', 'application/wasm'],
+  '/vendor/mediapipe/wasm/vision_wasm_nosimd_internal.js': ['https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm/vision_wasm_nosimd_internal.js', 'text/javascript'],
+  '/vendor/mediapipe/wasm/vision_wasm_nosimd_internal.wasm': ['https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18/wasm/vision_wasm_nosimd_internal.wasm', 'application/wasm'],
+  '/models/efficientdet-lite0.tflite': ['https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite0/int8/1/efficientdet_lite0.tflite', 'application/octet-stream'],
+};
+export async function visionAsset(request, fetcher=fetch) {
+  const path=new URL(request.url).pathname;
+  if(!Object.hasOwn(VISION_ASSETS,path)) return new Response('Not found',{status:404});
+  if(!['GET','HEAD'].includes(request.method)) return new Response('Method not allowed',{status:405});
+  const [url,type]=VISION_ASSETS[path];
+  try {
+    const upstream=await fetcher(url,{method:request.method,signal:AbortSignal.timeout(45000),cf:{cacheEverything:true,cacheTtl:86400}});
+    if(!upstream.ok) return new Response('Model download unavailable',{status:502});
+    return new Response(request.method==='HEAD'?null:upstream.body,{headers:{'Content-Type':type,'Cache-Control':'public, max-age=86400','X-Content-Type-Options':'nosniff'}});
+  }catch{return new Response('Model download unavailable',{status:502});}
+}
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === '/api/analyze') return analyze(request, env);
+    if (url.pathname.startsWith('/vendor/mediapipe/') || url.pathname.startsWith('/models/')) return visionAsset(request);
     if (!['GET', 'HEAD'].includes(request.method)) return new Response('Method not allowed', { status: 405 });
     const path = url.pathname === '/' ? '/index.html' : url.pathname;
     const asset = Object.hasOwn(SITE_ASSETS, path) ? SITE_ASSETS[path] : null;
     if (!asset) return new Response('Not found', { status: 404 });
-    return new Response(request.method === 'HEAD' ? null : asset.body, { headers: { 'Content-Type': asset.type, 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin' } });
+    const body=asset.base64?Uint8Array.from(atob(asset.body),c=>c.charCodeAt(0)):asset.body;
+    return new Response(request.method === 'HEAD' ? null : body, { headers: { 'Content-Type': asset.type, 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin' } });
   }
 };

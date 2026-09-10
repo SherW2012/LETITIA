@@ -5,6 +5,14 @@
  */
 export const modules = [
   {
+    id: 'boss-guard',
+    title: '打工人保命系统',
+    description: '身后有人，立刻进入工作状态。',
+    category: '摄像头实验 · 本地识别',
+    status: 'live',
+    load: () => import('./boss-guard/index.js'),
+  },
+  {
     id: 'moments-detector',
     title: '朋友圈装逼浓度检测器',
     description: '发一张截图，看看有多少人想翻白眼。',
