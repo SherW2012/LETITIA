@@ -143,7 +143,6 @@ export default {
     const path = url.pathname === '/' ? '/index.html' : url.pathname;
     const asset = Object.hasOwn(SITE_ASSETS, path) ? SITE_ASSETS[path] : null;
     if (!asset) return new Response('Not found', { status: 404 });
-    const body=asset.base64?Uint8Array.from(atob(asset.body),c=>c.charCodeAt(0)):asset.body;
-    return new Response(request.method === 'HEAD' ? null : body, { headers: { 'Content-Type': asset.type, 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin' } });
+    return new Response(request.method === 'HEAD' ? null : asset.body, { headers: { 'Content-Type': asset.type, 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin' } });
   }
 };

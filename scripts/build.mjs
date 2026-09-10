@@ -3,13 +3,13 @@ import { resolve, relative, extname } from 'node:path';
 
 const root = resolve('dist');
 const assets = {};
-const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.zip':'application/zip' };
+const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml' };
 async function collect(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     if (entry.name === 'server' || entry.name.startsWith('.')) continue;
     const path = resolve(dir, entry.name);
     if (entry.isDirectory()) await collect(path);
-    else if (types[extname(path)]) { const binary=extname(path)==='.zip'; assets['/' + relative(root, path).split('\\').join('/')] = { body: binary?(await readFile(path)).toString('base64'):await readFile(path, 'utf8'), type: types[extname(path)], base64:binary }; }
+    else if (types[extname(path)]) assets['/' + relative(root, path).split('\\').join('/')] = { body: await readFile(path, 'utf8'), type: types[extname(path)] };
   }
 }
 await collect(root);

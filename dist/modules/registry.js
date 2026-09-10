@@ -7,7 +7,7 @@ export const modules = [
   {
     id: 'boss-guard',
     title: '打工人保命系统',
-    description: '身后有人，立刻进入工作状态。',
+    description: '身后有人，自动跳到你指定的网页。',
     category: '摄像头实验 · 本地识别',
     status: 'live',
     load: () => import('./boss-guard/index.js'),
