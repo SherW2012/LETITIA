@@ -5,6 +5,14 @@
  */
 export const modules = [
   {
+    id: 'shit-detector',
+    title: '屎山浓度报警器',
+    description: '代码写得越烂，整个界面越红。',
+    category: '代码实验 · 本地实时判定',
+    status: 'live',
+    load: () => import('./shit-detector/index.js'),
+  },
+  {
     id: 'boss-guard',
     title: '打工人保命系统',
     description: '身后有人，自动跳到你指定的网页。',

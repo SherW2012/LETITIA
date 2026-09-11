@@ -1,0 +1,108 @@
+.sd{--shit:0;--blood:#c0301a;--deep:#6e1206;font-size:16px;line-height:1.6;position:relative}
+.sd [hidden]{display:none!important}
+.sd>*:not(.sd-vignette){position:relative;z-index:1}
+.sd-vignette{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:calc(var(--shit) * .85);background:radial-gradient(120% 90% at 50% 50%,rgba(192,48,26,0) 28%,rgba(150,25,10,.5) 72%,rgba(96,10,2,.82) 100%);transition:opacity .35s ease}
+.sd-intro{padding:0 0 20px;border-bottom:1px solid var(--ink);margin-bottom:22px}
+.sd-kicker{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;letter-spacing:1.2px;color:var(--muted)}
+.sd-intro>p{font-size:26px;line-height:1.45;margin:12px 0 0;font-weight:500;letter-spacing:-.6px}
+.sd-intro strong{font-weight:750;color:var(--blood)}
+.sd-sub{font-size:13px!important;font-weight:400!important;letter-spacing:0!important;color:var(--muted);margin-top:10px!important;line-height:1.55}
+.sd-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;align-items:start}
+
+.sd-editor{min-width:0}
+.sd-bar{display:flex;align-items:center;gap:10px;padding:9px 12px;background:#26272a;border:1px solid #26272a;border-bottom:0;color:#e7e7e2}
+.sd-dot{width:10px;height:10px;border-radius:50%;background:#f1ee27;box-shadow:14px 0 0 #d4d5ce,28px 0 0 #8a8b84;margin-right:30px;flex:none}
+.sd-file{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:#a8a9a2;margin-right:auto}
+.sd-lang-label{font-size:12px;color:#a8a9a2}
+.sd-lang{font:inherit;font-size:12px;padding:3px 6px;background:#35363a;color:#e7e7e2;border:1px solid #4a4b50;border-radius:3px}
+.sd-sample{font-size:12px;padding:4px 9px;background:transparent;color:#e7e7e2;border:1px solid #55565b;border-radius:3px;cursor:pointer}
+.sd-sample:hover{background:#3a3b40}
+.sd-code{display:flex;min-width:0;border:1px solid #26272a;background:#1b1c1f;transition:background .35s ease,border-color .35s ease}
+.sd-gutter{flex:none;width:46px;margin:0;padding:14px 8px 14px 0;overflow:hidden;text-align:right;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;color:#5c5d62;background:#202124;user-select:none;white-space:pre;transition:background .35s ease}
+.sd-input{flex:1;min-width:0;height:340px;margin:0;padding:14px 12px;border:0;resize:vertical;background:transparent;color:#ececeb;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;white-space:pre;overflow:auto;tab-size:2}
+.sd-input::placeholder{color:#6b6c71}
+.sd-input:focus{outline:0}
+.sd-code:focus-within{outline:3px solid var(--ink);outline-offset:2px}
+.sd .sd-code{background:color-mix(in srgb,#1b1c1f,var(--deep) calc(var(--shit) * 100%))}
+.sd .sd-gutter{background:color-mix(in srgb,#202124,var(--deep) calc(var(--shit) * 100%))}
+
+.sd-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.sd-roast,.sd-commit{font-size:14px;font-weight:650;padding:11px 18px;border:1px solid var(--ink);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.sd-roast{background:var(--ink);color:var(--accent)}
+.sd-commit{background:transparent;color:var(--ink)}
+.sd-commit.is-armed{border-color:var(--blood);color:#fff;background:var(--blood)}
+.sd-roast:hover:not(:disabled),.sd-commit:hover:not(:disabled){transform:translateY(-1px)}
+.sd-roast:disabled,.sd-commit:disabled{opacity:.45;cursor:not-allowed}
+.sd-chars{margin-left:auto;font-size:12px;color:var(--muted)}
+.sd-status{min-height:20px;margin:12px 0 0;font-size:13px;color:var(--muted)}
+.sd-error{margin:8px 0 0;font-size:13px;font-weight:600;color:#a8210d}
+
+.sd-panel{min-width:0;display:flex;flex-direction:column;gap:16px}
+.sd-gauge{border:1px solid var(--ink);background:#fff;padding:18px;background:color-mix(in srgb,#fff,#ffd9d1 calc(var(--shit) * 100%));transition:background .35s ease}
+.sd-gauge-top{display:flex;align-items:center;justify-content:space-between}
+.sd-gauge-label{font-size:12px;font-weight:700;letter-spacing:1.2px}
+.sd-lamp{width:13px;height:13px;border-radius:50%;background:color-mix(in srgb,#c8c9c2,var(--blood) calc(var(--shit) * 100%));box-shadow:0 0 0 0 rgba(192,48,26,.55)}
+.sd-score-row{display:flex;align-items:baseline;gap:7px;margin-top:8px}
+.sd-score{font-size:56px;font-weight:850;line-height:1;letter-spacing:-3px;font-variant-numeric:tabular-nums;color:color-mix(in srgb,var(--ink),var(--deep) calc(var(--shit) * 100%))}
+.sd-unit{font-size:13px;color:var(--muted)}
+.sd-meter{width:100%;height:9px;margin:12px 0 0;display:block}
+.sd-level{margin:13px 0 0;font-size:19px;font-weight:750;letter-spacing:-.5px}
+.sd-note{margin:6px 0 0;font-size:13px;color:var(--muted);line-height:1.55}
+.sd-signals,.sd-ai{border:1px solid var(--line);background:#fff;padding:15px 16px;background:color-mix(in srgb,#fff,#fff0ec calc(var(--shit) * 100%))}
+.sd-signals h4,.sd-ai h4{margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:1.1px;color:var(--muted)}
+.sd-signal-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.sd-signal{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:13px;border-bottom:1px dashed var(--line);padding-bottom:7px}
+.sd-signal:last-child{border-bottom:0;padding-bottom:0}
+.sd-signal-label{font-weight:600}
+.sd-signal-count{flex:none;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:var(--muted)}
+.sd-signal-empty,.sd-ai-empty{margin:0;font-size:13px;color:var(--muted)}
+.sd-ai-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.sd-ai-level{font-size:14px;font-weight:750}
+.sd-ai-score{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:var(--muted)}
+.sd-verdict{margin:0;font-size:15px;line-height:1.6;font-weight:550}
+.sd-issues{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
+.sd-issue{border-left:2px solid var(--blood);padding-left:11px}
+.sd-issue-line{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:var(--muted)}
+.sd-issue-quote{display:block;margin:4px 0;padding:5px 7px;background:#1b1c1f;color:#ececeb;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.5;overflow-x:auto;white-space:pre}
+.sd-issue-comment{margin:0;font-size:13px;line-height:1.55}
+.sd-limitations{margin:12px 0 0;font-size:12px;color:var(--muted)}
+.sd-disclaimer{margin:22px 0 0;padding-top:15px;border-top:1px solid var(--line);font-size:12px;line-height:1.65;color:var(--muted)}
+
+.sd-confirm{border:2px solid var(--deep);background:#fff;color:#20211d;padding:26px 28px;width:min(420px,calc(100% - 32px))}
+.sd-confirm::backdrop{background:rgba(96,10,2,.55)}
+.sd-confirm h3{margin:0;font-size:23px;font-weight:800;letter-spacing:-.8px;line-height:1.35;color:var(--deep)}
+.sd-confirm-body{margin:12px 0 0;font-size:14px;line-height:1.6;color:#55564f}
+.sd-confirm-actions{display:flex;gap:10px;margin-top:22px}
+.sd-stay,.sd-go{flex:1;font:inherit;font-size:14px;font-weight:650;padding:11px 12px;border:1px solid var(--deep);cursor:pointer}
+.sd-stay{background:var(--deep);color:#fff}
+.sd-go{background:transparent;color:var(--deep)}
+
+/* 越红越晃：只在明显屎山时开启，尊重系统的减弱动态设置。 */
+.sd.is-critical .sd-code{animation:sd-shake .45s infinite}
+.sd.is-critical .sd-lamp{animation:sd-pulse 1s infinite}
+.sd.is-critical .sd-score{animation:sd-pulse 1.4s infinite}
+@keyframes sd-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-1.5px)}75%{transform:translateX(1.5px)}}
+@keyframes sd-pulse{0%,100%{opacity:1}50%{opacity:.55}}
+
+/* 模块自己临时给弹窗染色，关闭时由 mount 的清理函数移除，不影响首页。 */
+.module-dialog.sd-surface-warm{--paper:#fdf0ec;--line:#e6c3b9}
+.module-dialog.sd-surface-critical{--paper:#400a03;--ink:#ffece7;--line:#8f2b18;color:#ffece7}
+.module-dialog.sd-surface-critical .sd-signals,.module-dialog.sd-surface-critical .sd-ai,.module-dialog.sd-surface-critical .sd-gauge{background:#5c1409;border-color:#8f2b18;color:#ffece7}
+.module-dialog.sd-surface-critical .sd-note,.module-dialog.sd-surface-critical .sd-unit,.module-dialog.sd-surface-critical .sd-status,.module-dialog.sd-surface-critical .sd-signal-count,.module-dialog.sd-surface-critical .sd-signals h4,.module-dialog.sd-surface-critical .sd-ai h4,.module-dialog.sd-surface-critical .sd-chars,.module-dialog.sd-surface-critical .sd-disclaimer,.module-dialog.sd-surface-critical .sd-sub,.module-dialog.sd-surface-critical .sd-signal-empty,.module-dialog.sd-surface-critical .sd-ai-empty,.module-dialog.sd-surface-critical .sd-kicker{color:#f0b8ac}
+.module-dialog.sd-surface-critical .sd-score{color:#fff}
+.module-dialog.sd-surface-critical .sd-roast{background:#fff;color:#5c1409;border-color:#fff}
+.module-dialog.sd-surface-critical .sd-error{color:#ffc4b8}
+.module-dialog.sd-surface-critical .sd-signal{border-bottom-color:#8f2b18}
+
+@media(max-width:760px){
+  .sd-layout{grid-template-columns:minmax(0,1fr)}
+  .sd-intro>p{font-size:22px}
+  .sd-input{height:240px}
+  .sd-dot{margin-right:26px}
+  .sd-score{font-size:46px}
+}
+@media(prefers-reduced-motion:reduce){
+  .sd-vignette,.sd-code,.sd-gutter,.sd-gauge{transition:none}
+  .sd.is-critical .sd-code,.sd.is-critical .sd-lamp,.sd.is-critical .sd-score{animation:none}
+  .sd-roast:hover:not(:disabled),.sd-commit:hover:not(:disabled){transform:none}
+}
